@@ -12,17 +12,17 @@ public class MaterialDetailedResponseDto {
 
     private MeasureUnit unit;
 
-    private Double minimunStock;
+    private Double minimumStock;
 
     public MaterialDetailedResponseDto() {
     }
 
-    public MaterialDetailedResponseDto(String materialCode, String materialName, String description, MeasureUnit unit, Double minimunStock) {
+    public MaterialDetailedResponseDto(String materialCode, String materialName, String description, MeasureUnit unit, Double minimumStock) {
         this.materialCode = materialCode;
         this.materialName = materialName;
         this.description = description;
         this.unit = unit;
-        this.minimunStock = minimunStock;
+        this.minimumStock = minimumStock;
     }
 
     public String getMaterialCode() {
@@ -57,11 +57,11 @@ public class MaterialDetailedResponseDto {
         this.unit = unit;
     }
 
-    public Double getMinimunStock() {
-        return minimunStock;
+    public Double getMinimumStock() {
+        return minimumStock;
     }
 
-    public void setMinimunStock(Double minimunStock) {
-        this.minimunStock = minimunStock;
+    public void setMinimumStock(Double minimumStock) {
+        this.minimumStock = minimumStock;
     }
 }

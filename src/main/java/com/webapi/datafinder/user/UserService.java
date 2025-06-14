@@ -34,7 +34,7 @@ public class UserService {
                 .toList();
     }
 
-    public List<UserGeneralResponseDto> getFilteredUserByRole(UserRole role) {
+    public List<UserGeneralResponseDto> getFilteredUsersByRole(UserRole role) {
         return userRepository.findAllByUserRole(role).stream()
                 .map(user -> new UserGeneralResponseDto(
                         user.getEmployeeCode(),

@@ -18,21 +18,22 @@ public class Material {
     @Column(nullable = false)
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MeasureUnit unit;
+    private MeasureUnit measureUnit;
 
     @Column(nullable = false)
-    private Double minimunStock;
+    private Double minimumStock;
 
     public Material() {
     }
 
-    public Material(String materialCode, String materialName, String description, MeasureUnit unit, Double minimunStock) {
+    public Material(String materialCode, String materialName, String description, MeasureUnit measureUnit, Double minimumStock) {
         this.materialCode = materialCode;
         this.materialName = materialName;
         this.description = description;
-        this.unit = unit;
-        this.minimunStock = minimunStock;
+        this.measureUnit = measureUnit;
+        this.minimumStock = minimumStock;
     }
 
     public Long getId() {
@@ -63,19 +64,19 @@ public class Material {
         this.description = description;
     }
 
-    public MeasureUnit getUnit() {
-        return unit;
+    public MeasureUnit getMeasureUnit() {
+        return measureUnit;
     }
 
-    public void setUnit(MeasureUnit unit) {
-        this.unit = unit;
+    public void setMeasureUnit(MeasureUnit measureUnit) {
+        this.measureUnit = measureUnit;
     }
 
-    public Double getMinimunStock() {
-        return minimunStock;
+    public Double getMinimumStock() {
+        return minimumStock;
     }
 
-    public void setMinimunStock(Double minimunStock) {
-        this.minimunStock = minimunStock;
+    public void setMinimumStock(Double minimumStock) {
+        this.minimumStock = minimumStock;
     }
 }

@@ -10,19 +10,19 @@ public class MaterialRequestDto {
 
     private String description;
 
-    private MeasureUnit unit;
+    private MeasureUnit measureUnit;
 
-    private Double minimunStock;
+    private Double minimumStock;
 
     public MaterialRequestDto() {
     }
 
-    public MaterialRequestDto(Long id, String materialName, String description, MeasureUnit unit, Double minimunStock) {
+    public MaterialRequestDto(Long id, String materialName, String description, MeasureUnit measureUnit, Double minimumStock) {
         this.id = id;
         this.materialName = materialName;
         this.description = description;
-        this.unit = unit;
-        this.minimunStock = minimunStock;
+        this.measureUnit = measureUnit;
+        this.minimumStock = minimumStock;
     }
 
     public Long getId() {
@@ -49,19 +49,19 @@ public class MaterialRequestDto {
         this.description = description;
     }
 
-    public MeasureUnit getUnit() {
-        return unit;
+    public MeasureUnit getMeasureUnit() {
+        return measureUnit;
     }
 
-    public void setUnit(MeasureUnit unit) {
-        this.unit = unit;
+    public void setMeasureUnit(MeasureUnit measureUnit) {
+        this.measureUnit = measureUnit;
     }
 
-    public Double getMinimunStock() {
-        return minimunStock;
+    public Double getMinimumStock() {
+        return minimumStock;
     }
 
-    public void setMinimunStock(Double minimunStock) {
-        this.minimunStock = minimunStock;
+    public void setMinimumStock(Double minimumStock) {
+        this.minimumStock = minimumStock;
     }
 }
