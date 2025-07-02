@@ -2,8 +2,10 @@ package com.webapi.datafinder.Line;
 
 import com.webapi.datafinder.Line.DTO.LineGeneralResponseDto;
 import com.webapi.datafinder.Line.DTO.LineRequestDto;
+import com.webapi.datafinder.user.DTO.UserGeneralResponseDto;
 import com.webapi.datafinder.user.User;
 import com.webapi.datafinder.user.UserRepository;
+import com.webapi.datafinder.user.UserRole;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,20 @@ public class LineService {
                 .toList();
     }
 
+    public List<UserGeneralResponseDto> getAllWorkersOfLine(String lineCode) {
+        Line line = lineRepository.findByLineCode(lineCode).orElseThrow(
+                () -> new IllegalStateException(
+                        "The line with id " + lineCode + " does not exists"
+                )
+        );
+        return line.getWorkers().stream().map(
+                user -> new UserGeneralResponseDto(
+                        user.getEmployeeCode(),
+                        user.getFirstName(),
+                        user.getUserRole()
+                )
+        ).toList();
+    }
 
     public void createNewLine(LineRequestDto lineRequestDto) {
 
@@ -70,6 +86,29 @@ public class LineService {
     }
 
     @Transactional
+    public void addNewWorkerToLine(String lineCode, String employeeCode) {
+        User worker = userRepository.findByEmployeeCode(employeeCode).orElseThrow(
+                () -> new IllegalStateException(
+                        "Employee with code " + employeeCode + " not found."
+                )
+        );
+
+        if (worker.getUserRole() != UserRole.Worker) throw new IllegalStateException(
+                "Employee with code " + employeeCode + " is not a worker, can't be assigned."
+        );
+
+        Line line = lineRepository.findByLineCode(lineCode).orElseThrow(
+                () -> new IllegalStateException(
+                        "The line with id " + lineCode + " does not exists"
+                )
+        );
+
+        if (!line.getWorkers().add(worker)) throw new IllegalStateException(
+                "The employee " + employeeCode + " is already assigned on the line " + lineCode
+        );
+    }
+
+    @Transactional
     public void deleteLine(String lineCode) {
         if (!lineRepository.existsByLineCode(lineCode)) {
             throw new IllegalStateException(
@@ -86,6 +125,29 @@ public class LineService {
         for (Line line : linesToModify) {
             line.setSupervisor(null);
         }
+    }
+
+    @Transactional
+    public void removeWorkerFromLine(String lineCode, String employeeCode) {
+        User worker = userRepository.findByEmployeeCode(employeeCode).orElseThrow(
+                () -> new IllegalStateException(
+                        "Employee with code " + employeeCode + " not found."
+                )
+        );
+
+        if (worker.getUserRole() != UserRole.Worker) throw new IllegalStateException(
+                "Employee with code " + employeeCode + " is not a worker, can't be assigned."
+        );
+
+        Line line = lineRepository.findByLineCode(lineCode).orElseThrow(
+                () -> new IllegalStateException(
+                        "The line with id " + lineCode + " does not exists"
+                )
+        );
+
+        if (!line.getWorkers().remove(worker)) throw new IllegalStateException(
+                "The employee " + employeeCode + " is not assigned on the line " + lineCode
+        );
     }
 
     @Transactional

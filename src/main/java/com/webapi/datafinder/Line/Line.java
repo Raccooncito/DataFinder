@@ -3,8 +3,8 @@ package com.webapi.datafinder.Line;
 import com.webapi.datafinder.user.User;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "ProductionsLine")
@@ -26,7 +26,7 @@ public class Line {
     private String country;
 
     @ManyToOne
-    @JoinColumn(name = "supervisor_id", nullable = true)
+    @JoinColumn(name = "supervisor_id")
     private User supervisor;
 
     @Column(nullable = false)
@@ -39,7 +39,7 @@ public class Line {
             joinColumns = @JoinColumn(name = "line_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<User> workers = new ArrayList<>();
+    private Set<User> workers = new HashSet<>();
 
     public Line() {
     }
@@ -51,7 +51,7 @@ public class Line {
         this.country = country;
         this.supervisor = supervisor;
         this.status = status;
-        this.workers = new ArrayList<>();
+        this.workers = new HashSet<>();
     }
 
     public Long getId() {
@@ -106,11 +106,11 @@ public class Line {
         this.status = status;
     }
 
-    public List<User> getWorkers() {
+    public Set<User> getWorkers() {
         return workers;
     }
 
-    public void setWorkers(List<User> workers) {
+    public void setWorkers(Set<User> workers) {
         this.workers = workers;
     }
 }

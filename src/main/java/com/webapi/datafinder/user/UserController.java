@@ -24,7 +24,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{role}")
+    @GetMapping(path = "/{role}")
     public List<UserGeneralResponseDto> getFilteredUsersByRole(@PathVariable("role") UserRole role) {
         return userService.getFilteredUsersByRole(role);
     }
