@@ -3,6 +3,7 @@ package com.webapi.datafinder.Line;
 import com.webapi.datafinder.Line.DTO.LineGeneralResponseDto;
 import com.webapi.datafinder.Line.DTO.LineRequestDto;
 import com.webapi.datafinder.user.DTO.UserGeneralResponseDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class LineController {
 
     private final LineService lineService;
 
+    @Autowired
     public LineController(LineService productionLineService) {
         this.lineService = productionLineService;
     }

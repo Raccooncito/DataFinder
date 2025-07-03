@@ -7,6 +7,7 @@ import com.webapi.datafinder.user.User;
 import com.webapi.datafinder.user.UserRepository;
 import com.webapi.datafinder.user.UserRole;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class LineService {
     private final LineRepository lineRepository;
     private final UserRepository userRepository;
 
+    @Autowired
     public LineService(LineRepository lineRepository, UserRepository userRepository) {
         this.lineRepository = lineRepository;
         this.userRepository = userRepository;

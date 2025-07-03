@@ -5,9 +5,7 @@ import com.webapi.datafinder.Material.MeasureUnit;
 public class MaterialGeneralResponseDto {
 
     private String materialCode;
-
     private String materialName;
-
     private MeasureUnit unit;
 
     public MaterialGeneralResponseDto() {
